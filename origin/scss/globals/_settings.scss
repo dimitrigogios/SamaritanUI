@@ -1,0 +1,24 @@
+//
+// Settings
+// -----------------------------------------------------------------------------
+
+// ==========================================================================
+// Breakpoint slicer
+// Resource: https://github.com/lolmaus/breakpoint-slicer
+// ==========================================================================
+
+//
+// Config
+//
+
+$slicer-anti-overlap-corrections: -1px;
+
+//
+// Slices
+//
+
+$slicer-breakpoints: 0 $grid-default $grid-mobilel $grid-medium $grid-large $grid-xlarge;
+
+// Breakpoint:   0                 320px    480px    768px     960px       1280px
+//               |-------------------|-------|---------|---------|-----------|--------->
+// Slice #:                1              2       3         4          5          6

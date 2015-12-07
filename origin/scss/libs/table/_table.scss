@@ -1,0 +1,106 @@
+.table {
+	display: table;
+	width: 100%;
+	border-spacing: 0;
+
+	td {
+		display: table-cell;
+		border-top: 1px solid;
+		border-color: #ddd;
+		@extend .text-left;
+	}
+
+	th {
+		display: table-cell;
+		border-bottom: 1px solid;
+		border-color: #ddd;
+		@extend .text-left;
+	}
+
+	th, td {
+		padding: 7px;
+	}
+}
+
+// bordered
+// --------------------------------------
+.table-bordered {
+	border: 1px solid;
+	border-left: 0;
+	border-color: #ddd;
+
+	td {
+		border-left: 1px solid; 
+		border-color: #ddd;
+	}
+
+	th {
+		border-left: 1px solid;
+		border-color: #ddd;
+	}
+}
+
+// striped rows
+// --------------------------------------
+.table-striped {
+	> tbody {
+		> tr:nth-of-type(odd) {
+			background-color: #f9f8f8;
+		}
+	}
+}
+
+// hover
+// --------------------------------------
+.table-hover {
+	> tbody {
+		> tr {
+			&:hover {
+				background-color: #f5f5f5;
+			}
+		}
+	}
+}
+
+// condensed
+// --------------------------------------
+.table-condensed {
+	th, td {
+		padding: 3px;
+	}
+}
+
+// contextual table
+// --------------------------------------
+tr.active,
+td.active {
+	background-color: $activeColor;
+	color: $activeFontColor;
+}
+tr.info,
+td.info {
+	background-color: $infoColor;
+	color: $infoFontColor;
+}
+tr.success,
+td.success {
+	background-color: $successColor;
+	color: $successFontColor;
+}
+tr.danger,
+td.danger {
+	background-color: $dangerColor;
+	color: $dangerFontColor;
+}
+tr.warning,
+td.warning {
+	background-color: $warningColor;
+	color: $warningFontColor;
+}
+
+// Responsive table
+// --------------------------------------
+.table-responsive {
+	min-height: .01%;
+    overflow-x: auto;
+}

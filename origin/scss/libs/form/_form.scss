@@ -1,0 +1,368 @@
+$lightBaseFontColor             : lighten( $baseFontColor, 10% );
+$bottomShadow                   : 4px;
+
+// fieldset
+// --------------------------------------
+fieldset {
+    border: 0;
+    padding: $singleDPadding;
+}
+    
+    label {
+        clear: both;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        vertical-align: middle;
+
+        &[for] {
+            @extend .pointer;
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .form-input,
+    .text-area,
+    .form-select {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+
+        display: block;
+        border-radius: $feather;
+        border: 1px solid;
+        border-bottom: 0;
+        border-color: $borderColor;
+        width: 100%;
+        //height: 36px;
+        padding: 0.5em 1em;
+        margin: 0 0 $bottomShadow+5px 0;
+        color: $baseFontColor;
+        font-family: $baseFont;
+        font-size: 1rem;
+
+        -webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+           -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+                box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+
+        /* WebKit, Blink, Edge */
+        ::-webkit-input-placeholder {
+            color: $lightBaseFontColor;
+        }
+
+        /* Mozilla Firefox 4 to 18 */
+        :-moz-placeholder {
+           color: $lightBaseFontColor;
+           opacity:  1;
+        }
+
+        /* Mozilla Firefox 19+ */
+        ::-moz-placeholder {
+           color: $lightBaseFontColor;
+           opacity:  1;
+        }
+
+        /* Internet Explorer 10-11 */
+        :-ms-input-placeholder {
+           color: $lightBaseFontColor;
+        }
+
+        &.inline-block {
+            @extend .wAuto-i;
+        }
+    }
+
+    .form-static {
+        padding: 0.5em 1em;
+        margin: 0 0 $bottomShadow 0;
+
+        color: $baseFontColor;
+        font-family: $baseFont;
+        font-size: 1rem;
+        line-height: 19px;
+    }
+
+    .form-group {
+        > label {
+            padding: 0.5em 5px 0.5em 0;
+            line-height: 21px;
+        }
+
+        &.feedback {
+            @extend .relative;
+
+            .form-input {
+                padding-right: 40px;
+                @extend .relative;
+                @extend .z1;
+            }
+
+            span:last-child {
+                @extend .absolute;
+                @extend .z2;
+                @extend .text-center;
+                right: 10px;
+                bottom: 3px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /*@include to(3) {
+            &.feedback {
+                span:last-child {
+                    bottom: 3px;
+                }
+            }
+        }*/
+    }
+
+// form-select
+// --------------------------------------
+// ---
+.form-select {
+    //@extend .form-input;
+    @extend .pointer;
+
+    background-color: transparent;
+    background-image: url('../images/select-arrow.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    padding-right: 42px;
+}
+// form-label
+// --------------------------------------
+// ---
+.form-label {
+    //-webkit-appearance: none;
+    float: left;
+    
+    display: block;
+    border-radius: $feather;
+    border: 1px solid;
+    border-color: $borderColor;
+    width: 100%;
+    //height: 36px;
+    padding: 0.5em 1em;
+    margin: 0 0 $bottomShadow 0;
+    color: $baseFontColor;
+    font-family: $baseFont;
+    font-size: 1rem;
+
+    -webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+       -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+            box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+}
+
+// form-checkbox
+// --------------------------------------
+// ---
+.form-checkbox {
+    vertical-align: middle;
+}
+
+// form-group
+// --------------------------------------
+// ---
+.form-group {
+    @extend .w100;
+    display: table;
+    margin: 0 0 $bottomShadow+5px 0;
+
+    .form-input,
+    .form-label,
+    .input-group,
+    .addon {
+        display: table-cell;
+    }
+    .form-input,
+    .form-label {
+        margin: 0;
+    }
+
+    .addon {
+        display: table-cell !important;
+        @extend .w1-i;
+        max-width: 1%;
+        padding: 4px 10px 4px 10px;
+        white-space: nowrap;
+        vertical-align: middle;
+        font-size: 20px;
+        float: none;
+
+        background-color: lighten( $borderColor, 15%);
+        border: 1px solid;
+        border-left: 0;
+        border-bottom: 0;
+        border-color: $borderColor;
+
+        -webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+           -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+                box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $borderColor, 5%),1);
+
+        -webkit-user-select: none;
+           -moz-user-select: none;
+
+        .fa {
+            color: darken( $borderColor, 15%);
+        }
+    }
+    .input-group {
+        display: table;
+        @extend .w100;
+        @extend .relative;
+
+        .addon:first-child {
+            border-right: 0;
+            border-left: 1px solid;
+            border-color: $borderColor;
+        }
+        .addon:last-child {
+            border-left: 0;
+            border-right: 1px solid;
+            border-color: $borderColor;
+        }
+    }
+}
+
+// form
+// --------------------------------------
+form {
+    margin: 0 0 $bottomShadow+5px 0;
+}
+
+    .form-inline {
+        margin: 0 0 0 0;
+        @extend .overflow;
+
+        > * {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .btn {
+            @extend .inline-block;
+            @extend .wAuto;
+
+            @include to(3) {
+                width: 100% !important;
+            }
+        }
+        .checkbox {
+            @extend .inline-block;
+        }
+        .form-group {
+            display: inline-table;
+            width: auto;
+
+            @include to(3) {
+                width: 100%;
+            }
+
+            label {
+                display: table-cell;
+                padding-right: 5px;
+
+                @include to(3) {
+                    float: left;
+                }
+            }
+
+            .input-group,
+            .btn {
+                display: inline-table;
+                @extend .wAuto;
+
+                @include to(3) {
+                    width: 100% !important;
+                }
+            }
+
+            .form-input {
+            }
+
+            .input-group {
+                border: 0;
+
+                .input-group-addon,
+                .form-input {
+                    display: table-cell;
+                }
+                .form-input {
+                    border: 0;
+                    border-bottom: 0;
+                    border-top: 1px solid;
+                    border-color: lighten( $borderColor, 15%);
+
+                    &:last-child {
+                        border-right: 1px solid;
+                    }
+                }
+                .input-group-addon {
+                    padding: 5px 12px;
+                    line-height: 14px;
+                }
+            }
+        }
+    }
+
+    .form-horizontal {
+        margin: 0 0 $bottomShadow+5px 0;
+        @extend .overflow;
+
+        label[class^="w"] {
+            margin-bottom: 0;
+
+            @include to(3) {
+                float: left;
+            }
+        }
+    }
+
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 18px;
+    height: 16px;
+    vertical-align: middle;
+    top: -2px;
+
+    @extend .relative;
+    @extend .overflow;
+    @extend .pointer;
+
+    &[disabled="disabled"] {
+        @extend .cursor;
+    }
+}
+    input[type="checkbox"] {
+        left: 2px;
+        top: 0px;
+    }
+
+.input-l {
+    line-height: 35px;
+}
+.input-sm {
+    line-height: 15px;
+}
+    .form-input.input-sm {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+.input-xs {
+    line-height: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

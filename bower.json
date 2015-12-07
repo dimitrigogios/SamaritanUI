@@ -1,0 +1,37 @@
+{
+  "name": "DimitriGogios",
+  "version": "0.0.1",
+  "description": "Webdeveloper",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "Webdeveloper"
+  ],
+  "authors": [
+    "Dimitri Gogios"
+  ],
+  "license": "MIT",
+  "homepage": "www.DimitriGogios.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-idletimer": "~1.0.1",
+    "jquery.scrollTo": "~2.1.1",
+    "jquery-dateFormat": "~1.0.2",
+    "jquery-touch-events": "~1.0.1",
+    "jquery-ui": "~1.11.4",
+    "angular": "~1.4.6",
+    "angular-route": "~1.4.6",
+    "angular-touch": "~1.4.5",
+    "angulartics": "~0.20.1",
+    "angulartics-google-analytics": "~0.1.1",
+    "angular-scrollto": "~0.1.4",
+    "angular-scroll": "~1.0.0"
+  }
+}
