@@ -1,19 +1,19 @@
 ## SamaritanUI
 SamaritanUI is a lightweight and easy to use HTML, CSS and JS framework
 
-*A gridless based responsive web designing!*
+**A gridless based responsive web designing!**
 SamaritanUI is a grid-less UI-framework with responsive CSS and JavaScript components made for the modern web.
 
-*Lightweight framework*
+**Lightweight framework**
 SamaritanUI is made with modern tools like Grunt, Bower, Sass and Compass. SamaritanUI is also lightweight and most important of all it's packed with helperclasses
 
-*One solution for every device*
+**One solution for every device**
 Every components and functions of SamaritanUI is made for a responsive web design approach.
 
 ## License
 The MIT License (MIT)
 
-*Copyright (c) 2015 SamaritanUI*
+**Copyright (c) 2015 SamaritanUI**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
