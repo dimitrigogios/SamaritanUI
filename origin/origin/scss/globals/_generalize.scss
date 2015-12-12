@@ -81,14 +81,16 @@ body {
         // Mobile Portrait, 320px
         // ------------------------------------
         @include to(2) {
-            .mp-hide {
-                display: none !important;
-
-                &:before,
-                &:after {
+            body.mp {
+                .mp-hide {
                     display: none !important;
-                    content: normal !important;
-                }        
+
+                    &:before,
+                    &:after {
+                        display: none !important;
+                        content: normal !important;
+                    }        
+                }
             }
         }
 
@@ -96,14 +98,16 @@ body {
         // Mobile Landscape, 480px
         // ------------------------------------
         @include at(3) {
-            .ml-hide {
-                display: none !important;
-
-                &:before,
-                &:after {
+            body.ml {
+                .ml-hide {
                     display: none !important;
-                    content: normal !important;
-                }        
+
+                    &:before,
+                    &:after {
+                        display: none !important;
+                        content: normal !important;
+                    }        
+                }
             }
         }
 
@@ -189,48 +193,52 @@ body {
     // Mobile Portrait, 320px
     // ------------------------------------
     @include to(2) {
-        .mp-relative {
-            position: relative;
-        }
-        .mp-absolute {
-            position: absolute;
-        }
-        .mp-fixed {
-            position: fixed;       
-        }
-            .mp-relative-i {
-                position: relative !important;
+        body.mp {
+            .mp-relative {
+                position: relative;
             }
-            .mp-absolute-i {
-                position: absolute !important;
+            .mp-absolute {
+                position: absolute;
             }
-            .mp-fixed-i {
-                position: fixed !important;       
+            .mp-fixed {
+                position: fixed;       
             }
+                .mp-relative-i {
+                    position: relative !important;
+                }
+                .mp-absolute-i {
+                    position: absolute !important;
+                }
+                .mp-fixed-i {
+                    position: fixed !important;       
+                }
+        }
     }
 
     // ---
     // Mobile Landscape, 480px
     // ------------------------------------
     @include at(3) {
-        .ml-relative {
-            position: relative;
-        }
-        .ml-absolute {
-            position: absolute;
-        }
-        .ml-fixed {
-            position: fixed;       
-        }
-            .ml-relative-i {
-                position: relative !important;
+        body.ml {
+            .ml-relative {
+                position: relative;
             }
-            .ml-absolute-i {
-                position: absolute !important;
+            .ml-absolute {
+                position: absolute;
             }
-            .ml-fixed-i {
-                position: fixed !important;       
+            .ml-fixed {
+                position: fixed;       
             }
+                .ml-relative-i {
+                    position: relative !important;
+                }
+                .ml-absolute-i {
+                    position: absolute !important;
+                }
+                .ml-fixed-i {
+                    position: fixed !important;       
+                }
+        }
     }
 
     // ---
@@ -365,17 +373,19 @@ body {
         // Mobile Portrait, 320px, mp
         // ------------------------------------
         @include to(2) {
-            .mp-text-center {
-                text-align: center;
-            }
-            .mp-text-right {
-                text-align: right;
-            }
-            .mp-text-left {
-                text-align: left;
-            }
-            .mp-text-justify {
-                text-align: justify;
+            body.mp {
+                .mp-text-center {
+                    text-align: center;
+                }
+                .mp-text-right {
+                    text-align: right;
+                }
+                .mp-text-left {
+                    text-align: left;
+                }
+                .mp-text-justify {
+                    text-align: justify;
+                }
             }
         }
 
@@ -383,17 +393,19 @@ body {
         // Mobile Landscape, 480px, ml
         // ------------------------------------
         @include at(3) {
-            .ml-text-center {
-                text-align: center;
-            }
-            .ml-text-right {
-                text-align: right;
-            }
-            .ml-text-left {
-                text-align: left;
-            }
-            .ml-text-justify {
-                text-align: justify;
+            body.ml {
+                .ml-text-center {
+                    text-align: center;
+                }
+                .ml-text-right {
+                    text-align: right;
+                }
+                .ml-text-left {
+                    text-align: left;
+                }
+                .ml-text-justify {
+                    text-align: justify;
+                }
             }
         }
 
@@ -659,9 +671,11 @@ body {
         // Mobile Portrait, 320px
         // ------------------------------------
         @include to(2) {
-            @for $trailing from 0 through $loopNumber {
-                .mp-trailing#{$trailing} {
-                    margin-bottom: 0rem + $trailing;
+            body.mp {
+                @for $trailing from 0 through $loopNumber {
+                    .mp-trailing#{$trailing} {
+                        margin-bottom: 0rem + $trailing;
+                    }
                 }
             }
         }
@@ -670,9 +684,11 @@ body {
         // Mobile Landscape, 480px
         // ------------------------------------
         @include at(3) {
-            @for $trailing from 0 through $loopNumber {
-                .ml-trailing#{$trailing} {
-                    margin-bottom: 0rem + $trailing;
+            body.ml {
+                @for $trailing from 0 through $loopNumber {
+                    .ml-trailing#{$trailing} {
+                        margin-bottom: 0rem + $trailing;
+                    }
                 }
             }
         }
@@ -782,17 +798,19 @@ body {
         // Mobile Portrait, 320px, mp
         // ------------------------------------
         @include to(2) {
-            .mp-buff-top {
-                padding-top: $sidePadding + $sidePadding;
-            }
-            .mp-buff-right {
-                padding-right: $sidePadding + $sidePadding;
-            }
-            .mp-buff-bottom {
-                padding-bottom: $sidePadding + $sidePadding;
-            }
-            .mp-buff-left {
-                padding-left: $sidePadding + $sidePadding;
+            body.mp {
+                .mp-buff-top {
+                    padding-top: $sidePadding + $sidePadding;
+                }
+                .mp-buff-right {
+                    padding-right: $sidePadding + $sidePadding;
+                }
+                .mp-buff-bottom {
+                    padding-bottom: $sidePadding + $sidePadding;
+                }
+                .mp-buff-left {
+                    padding-left: $sidePadding + $sidePadding;
+                }
             }
         }
 
@@ -800,17 +818,19 @@ body {
         // Mobile Landscape, 480px, ml
         // ------------------------------------
         @include at(3) {
-            .ml-buff-top {
-                padding-top: $sidePadding + $sidePadding;
-            }
-            .ml-buff-right {
-                padding-right: $sidePadding + $sidePadding;
-            }
-            .ml-buff-bottom {
-                padding-bottom: $sidePadding + $sidePadding;
-            }
-            .ml-buff-left {
-                padding-left: $sidePadding + $sidePadding;
+            body.ml {
+                .ml-buff-top {
+                    padding-top: $sidePadding + $sidePadding;
+                }
+                .ml-buff-right {
+                    padding-right: $sidePadding + $sidePadding;
+                }
+                .ml-buff-bottom {
+                    padding-bottom: $sidePadding + $sidePadding;
+                }
+                .ml-buff-left {
+                    padding-left: $sidePadding + $sidePadding;
+                }
             }
         }
 

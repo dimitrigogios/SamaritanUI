@@ -4,19 +4,41 @@
 // Mobile Portrait, 320px (mobile first)
 // ------------------------------------
 .box {
-    width: $grid-default;
+    width: auto;
     margin: 0 auto;
     padding-left: $sidePadding;
     padding-right: $sidePadding;
 }
 
 // ---
+// Mobile, 768px
+// ------------------------------------
+@include to(3) {
+    .box {
+        width: auto;
+    }    
+}
+
+// ---
+// Mobile, 320px
+// ------------------------------------
+@include to(2) {
+    body.mp {
+        .box {
+            width: $grid-default;
+        }
+    }
+}
+
+// ---
 // Mobile Landscape, 480px
 // ------------------------------------
 @include at(3) {
-    .box {
-        width: $grid-mobilel;
-    }    
+    body.ml {
+        .box {
+            width: $grid-mobilel;
+        }
+    }
 }
 
 // ---
@@ -144,27 +166,29 @@
         // Mobile Portrait, 320px
         // ------------------------------------
         @include to(2) {
-            @for $width from 0 through $loopNumber {
-                .mp-w#{$width} {
-                    width: 0% + $width;
+            body.mp {
+                @for $width from 0 through $loopNumber {
+                    .mp-w#{$width} {
+                        width: 0% + $width;
 
-                    float: left;
-                    display: inline-block;
+                        float: left;
+                        display: inline-block;
+                    }
                 }
-            }
-            @for $width from 0 through $loopNumber {
-                .mp-w#{$width}-i {
-                    width: 0% + $width !important;
+                @for $width from 0 through $loopNumber {
+                    .mp-w#{$width}-i {
+                        width: 0% + $width !important;
 
-                    float: left;
-                    display: inline-block;
+                        float: left;
+                        display: inline-block;
+                    }
                 }
-            }
-            .mp-wAuto {
-                width: auto;
-            }
-            .mp-wAuto-i {
-                width: auto !important;
+                .mp-wAuto {
+                    width: auto;
+                }
+                .mp-wAuto-i {
+                    width: auto !important;
+                }
             }
         }
 
@@ -172,27 +196,29 @@
         // Mobile Landscape, 480px
         // ------------------------------------
         @include at(3) {
-            @for $width from 0 through $loopNumber {
-                .ml-w#{$width} {
-                    width: 0% + $width;
+            body.ml {
+                @for $width from 0 through $loopNumber {
+                    .ml-w#{$width} {
+                        width: 0% + $width;
 
-                    float: left;
-                    display: inline-block;
+                        float: left;
+                        display: inline-block;
+                    }
                 }
-            }
-            @for $width from 0 through $loopNumber {
-                .ml-w#{$width}-i {
-                    width: 0% + $width !important;
+                @for $width from 0 through $loopNumber {
+                    .ml-w#{$width}-i {
+                        width: 0% + $width !important;
 
-                    float: left;
-                    display: inline-block;
+                        float: left;
+                        display: inline-block;
+                    }
                 }
-            }
-            .ml-wAuto {
-                width: auto;
-            }
-            .ml-wAuto-i {
-                width: auto !important;
+                .ml-wAuto {
+                    width: auto;
+                }
+                .ml-wAuto-i {
+                    width: auto !important;
+                }
             }
         }
 
