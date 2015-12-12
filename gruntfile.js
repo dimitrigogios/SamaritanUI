@@ -58,7 +58,7 @@ module.exports = function(grunt) {
             },
             target: {
                 files: {
-                    './properties/css/samaritanui.min.css': ['./properties/css/samaritanui.css']
+                    './properties/css/samaritanui.css': ['./properties/css/samaritanui.css']
                 }
             }
         },
