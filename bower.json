@@ -14,6 +14,10 @@
   ],
   "license": "MIT",
   "homepage": "www.SamaritanUI.com",
+  "main": [
+    "scss/samaritanui.scss",
+    "js/samarintanui.js"
+  ]
   "ignore": [
     "**/.*",
     "node_modules",
