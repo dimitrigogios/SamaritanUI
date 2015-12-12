@@ -52,7 +52,6 @@
         return {
             restrict: 'E',
             link: function($scope, $element, attrs) {
-                console.log('lloll');
                 var i, len, attr;
                 var img = new Image();
                 var placehold = $element[0].children[0];

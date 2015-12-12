@@ -27,12 +27,6 @@
                         $('.site-content > nav.navigation').addClass('absolute').removeClass('fixed').removeAttr('style');
                     }
                 }
-                if(posScrl < 50 ) {
-                    if( $('.article-navigation').hasClass('m-fixed-i') ) {
-                        $('.article-navigation').toggleClass('m-absolute-i');
-                        $('.article-navigation').toggleClass('m-fixed-i');
-                    }
-                }
             }).on('scrollDown', function() {
                 var posScrl = $(window).scrollTop();
                 var height = parseFloat($('.site-content > nav.navigation').outerHeight(true));
@@ -40,11 +34,6 @@
 
                 if( posScrl > 50 ) {
                     $('.site-content > nav.navigation').css('top', -height);
-
-                    if( $('.article-navigation').hasClass('m-absolute-i') ) {
-                        $('.article-navigation').toggleClass('m-absolute-i');
-                        $('.article-navigation').toggleClass('m-fixed-i');
-                    }
                 }
             }).on('scrollEnded, contentLoaded, articleLoaded', function(){
                 setTimeout(function(){

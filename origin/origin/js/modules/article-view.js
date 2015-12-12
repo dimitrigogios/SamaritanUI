@@ -43,6 +43,9 @@
         scrollValue = 0,
         isLastVar = false;
 
+    var defArticlesLoaded,
+        defArticlesMenuLoaded;
+
     var articleControllers = angular.module('articleControllers', ['ngRoute']);
     //'$element', '$timeout', '$interval',
     articleControllers
@@ -50,11 +53,16 @@
     .controller('index-ctrl', ['$scope', '$http', 'articleService', '$sce', '$timeout', function($scope, $http, articleService, $sce, $timeout) {
         //console.log('article articles controller initiated !! ');
     }])
-    .controller('page-ctrl', ['$scope', '$http', 'articleService', '$sce', '$timeout', '$routeParams', '$document', '$anchorScroll', '$location', '$rootScope', function($scope, $http, articleService, $sce, $timeout, $routeParams, $document, $anchorScroll, $location, $rootScope) {
-        console.log('article page controller initiated !! ');
+    .controller('page-ctrl', ['$scope', '$http', 'articleService', '$sce', '$timeout', '$routeParams', '$document', '$location', '$rootScope', function($scope, $http, articleService, $sce, $timeout, $routeParams, $document, $location, $rootScope) {
+        
+        /*defArticlesLoaded       = new $.Deffered();
+        defArticlesMenuLoaded   = new $.Deffered();*/
+
         var page;
         var tempPage = $routeParams.pageid;
+
         $('#btn-article-navigation').removeClass('hide');
+
         if( typeof tempPage != 'undefined' ) {
             page = tempPage.replace('-',' ');
         } else {
@@ -65,47 +73,33 @@
 
         $scope.page = tempPage;
 
-        articleService.getArticlesAsMenu('articlesAsMenu', page, 'ASC', true)
-            .success(function(data) {
-                $scope.menuArticles = data;
-                /*$document.on('menuListLoaded', function() {
-                    $timeout(function(){
-
-                        var url = $location.url().split('#');
-                        if( url.length == 2 ) {
-                            var elementResult        = document.getElementById('id-'+url[1]),
-                                elementResult        = angular.element(elementResult);
-                            
-                            $("body").animate({scrollTop: $('#id-'+url[1]).data('offset')-100}, "fast");
-                        }
-                    },10);
-                });*/
-
-                $timeout(function(){
-                    $document.trigger('menuListLoaded');
-                }, 1);
-            });
-
-        var getValue = false;
-
+        var getValue = false,
+            activeBtnTimer;
+        
         articleService.getArticles('articlesByCategory', page, 'ASC')
             .success(function(data) {
 
                 $scope.articles = data;
 
-                $scope.sanitizeHtml = function($thisStr) {
-                    return $sce.trustAsHtml($thisStr);
-                };               
-
                 getValue = true;
-
-                $document.trigger('contentLoaded');                
-
             })
-            .error(function(data,msg){
-                console.log(msg);
-                console.log('something went wrong !! ');
+            .then(function() {
+                $document.trigger('contentLoaded');
+
+                articleService.getArticlesAsMenu('articlesAsMenu', page, 'ASC', true)
+                    .success(function(data) {
+                        $scope.menuArticles = data;
+                    })
+                    .then(function() {
+                        $document.trigger('menuListLoaded');
+                    });
+
+                //$scope.$destroy();
             });
+
+        $scope.sanitizeHtml = function($thisStr) {
+            return $sce.trustAsHtml($thisStr);
+        };
 
         $scope.toggleArticleActive = function(id, $event) {
                 var articleValueNew = $('#activate-article-'+id, $(event.currentTarget)).prop('checked');
@@ -117,16 +111,16 @@
                 articleService.updateArticleById(articleId, articleValueNew, articleItem)
                     .success(function(data){
                         console.log('success !!');
+                    }).then(function(){
+                        if( getValue ) {
+                            getValue = false;
+
+                            activeBtnTimer = $timeout(function() {
+                                getValue = true;
+                                el.toggleClass('btn-show');
+                            }, 100);
+                        }
                     });
-
-            if( getValue ) {
-                getValue = false;
-
-                $timeout(function() {
-                    getValue = true;
-                    el.toggleClass('btn-show');
-                }, 100);
-            }
         }
 
         $scope.getUrl = function(url) {
@@ -134,55 +128,12 @@
             url = url.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
             return url;
         };
-        
+
+        var preCodeTimer,
+            menuLoadedTimer,
+            scrollEndedTimer;
+
         //Custom To SamaritanUI
-        $document.on('scroll', function() {
-            if($('.article-navigation').length) {
-                scrollValue = $(window).scrollTop();
-
-                isLast();
-
-                setCurrentMenu();
-
-                $('a[data-offset="'+scrollValue+'"]').addClass('current');
-
-                if( scrollValue > 99 ) {
-                    if( !$('.article-navigation > .list-unstyled').hasClass('fixed') ) {
-                        $('.article-navigation > .list-unstyled').addClass('fixed').css('left', $('.article-navigation .list-unstyled').offset().left).css('top', 0);
-                    }
-                } else {
-                    $('.article-navigation > .list-unstyled').removeClass('fixed').removeAttr('style');
-                }
-            }
-        })
-        .on('contentLoaded', function(){
-            $timeout(function() {
-                if( !$('.logged-in').length ) {
-                    $('pre code').each(function(i, block) {
-                        hljs.highlightBlock(block);
-                    });
-                }
-            }, 100);
-        })
-        .on('menuListLoaded', function(){
-            $timeout(function() {
-                setCurrentMenu();
-            }, 500);
-        })
-        .on('scrollEnded', function(){
-            scrollValue = $(window).scrollTop();
-            
-            isLast();
-
-            setCurrentMenu();
-
-            $timeout(function() {
-                setCurrentMenu();
-                
-                isLastVar = false;
-            }, 800);       
-        });
-
         function setCurrentMenu() {
             $.each(scrollArray, function(k,v){
                 //windowsize > 500 && windowsize < 600
@@ -212,6 +163,67 @@
             }
         }
 
+        
+        $(document).on('scroll', function() {
+            scrollValue = $(window).scrollTop();
+
+            isLast();
+
+            setCurrentMenu();
+
+            $('a[data-offset="'+scrollValue+'"]').addClass('current');
+
+            if( scrollValue > 99 ) {
+                if( !$('.article-navigation > .list-unstyled').hasClass('fixed') ) {
+                    console.log($('.article-navigation .list-unstyled').offset().left);
+                    $('.article-navigation > .list-unstyled').addClass('fixed').css('left', $('.article-navigation .list-unstyled').offset().left).css('top', 0);
+                }
+            } else {
+                $('.article-navigation > .list-unstyled').removeClass('fixed').removeAttr('style');
+            }
+        })
+        .on('contentLoaded', function() {
+            preCodeTimer = $timeout(function() {
+                if( !$('.logged-in').length ) {
+                    $('pre code').each(function(i, block) {
+                        hljs.highlightBlock(block);
+                    });
+                }
+            }, 100);
+        })
+        .on('menuListLoaded', function() {
+            menuLoadedTimer = $timeout(function() {
+                setCurrentMenu();
+            }, 500);
+        })
+        .on('scrollEnded', function() {
+            scrollValue = $(window).scrollTop();
+            
+            isLast();
+
+            setCurrentMenu();
+
+            scrollEndedTimer = $timeout(function() {
+                setCurrentMenu();
+                
+                isLastVar = false;
+            }, 800);
+        });
+        
+
+        $scope.$on('$destroy', function( event ) {
+            //console.log('$destroy() was called !!');
+            $timeout.cancel( preCodeTimer );
+            $timeout.cancel( menuLoadedTimer );
+            $timeout.cancel( scrollEndedTimer );
+
+            $scope.articles     = null;
+            $scope.menuArticles = null;
+            $document.off('scroll');
+            $document.off('contentLoaded');
+            $document.off('menuListLoaded');
+            $document.off('scrollEnded');
+        });
     }])
     .controller('article-ctrl', ['$scope', '$rootScope', '$http', 'articleService', '$routeParams', '$location', '$route', '$sce', '$timeout', '$document', function($scope, $rootScope, $http, articleService, $routeParams, $location, $route, $sce, $timeout, $document) {
         console.log('article controller initiated !! ');
@@ -229,6 +241,8 @@
         
         var articleId_temp = $scope.articleid = $routeParams.articleid;
         var articleId = articleId_temp.match(/([0-9]+)/);
+
+        var preCodeTimer;
 
         articleService.getArticleById(articleId[0], 'article')
             .success(function(data) {
@@ -251,7 +265,7 @@
                     $location.path(path0+articleI+'-'+articleT);
                     $scope.showArticle = true;
 
-                    $timeout(function() {
+                    preCodeTimer = $timeout(function() {
                         if( !$('.logged-in').length ) {
                             $('pre code').each(function(i, block) {
                                 hljs.highlightBlock(block);
@@ -325,7 +339,7 @@
 
         $scope.updateCategory = function(articleItem) {
             var id = articleId[0];
-            console.log(id)
+
             if( articleItem == 'articleArticleCategoryId' ) {
                 var articleValue = $scope.selectPrimaryCategories.selectedOption.id;
             } else {
@@ -340,6 +354,12 @@
                     console.log('something went wrong !! ');
                 });
         }
+
+        /*$scope.$on('$destroy', function( event ) {
+            $scope.selectSecondaryCategories = null;
+            $timeout.cancel( preCodeTimer );
+            console.log('destroy article ctrl mode');
+        });*/
 
     }]);
 
@@ -726,9 +746,16 @@
                                 });
                             });
                         });
-
-                        
                     }
+
+                /*$scope.$on('$destroy', function( event ) {
+                    $currentElement = null;
+                    $currentText = null;
+                    $editor = null;
+                    //$timeout.cancel( buttonTimer2 );
+                    console.log('destroy editmode');
+                });*/
+
                 }// end of link {}
             };
         }]);
@@ -890,6 +917,9 @@
                         $scope.createArticleActive = false;
                     };
 
+                    var buttonTimer1,
+                        buttonTimer2;
+
                     $scope.uploadFiles = function() {
                         var id = $scope.newArticleId;
                         var allowLoad = false;
@@ -940,9 +970,9 @@
                                 onSelect:function(files) {
                                     $element.find('#extrabutton').removeClass('hide');
 
-                                    $timeout(function() {
+                                    buttonTimer1 = $timeout(function() {
                                         $element.find('.ajax-file-upload-red').on("click", function(){
-                                            $timeout(function() {
+                                            buttonTimer2 = $timeout(function() {
                                                 if( $element.find('.ajax-file-upload-statusbar').length ) {
                                                     console.log('still there !!');
                                                 }else {
@@ -1033,7 +1063,10 @@
                                                                     });
                                                             });   
                                                         }
-                                                    });    
+                                                    });
+                                                    /*$scope.$on('$destroy', function( event ) {
+                                                        elements = null;
+                                                    });*/  
                                                 });
 
                                 }
@@ -1066,6 +1099,12 @@
                     $scope.cancelNewArticleCategory= function() {
                         $scope.createArticleCategoryActive = false;
                     }
+
+                    /*$scope.$on('$destroy', function( event ) {
+                        $timeout.cancel( buttonTimer1 );
+                        $timeout.cancel( buttonTimer2 );
+                        console.log('destroy article update');
+                    });*/
 
                 }// end of link {}
             };
@@ -1100,6 +1139,12 @@
                         }
                         return '';
                     };
+
+                    /*$scope.$on('$destroy', function( event ) {
+                        $scope.isCurrent = null;
+                        $scope.getUrl = null;
+                        console.log('destroy menuList');
+                    });*/
                 }// end of link {}
             };
         }]);
@@ -1108,11 +1153,13 @@
             return {
                 restrict: 'A',
                 link: function($scope, $element, attrs) {
-                    $document.on('menuListLoaded', function() {
-                        $timeout(function() {
-                            //console.log($element.attr('scroll-to'));
+                    var offsetTimer,
+                        scrollEndedTimer;
+
+                    function calcOffset() {
+                        offsetTimer = $timeout(function() {
                             var className = $element.attr('data-el').split('#');
-                            //console.log(className);
+
                             var elementResult        = document.getElementById(className[1]),
                                 elementResult        = angular.element(elementResult);
                             if( typeof elementResult[0] != 'undefined' ) {
@@ -1120,20 +1167,28 @@
                                 scrollArray.push(elementResult[0].offsetTop);
                             }
                         }, 2);
+                    }
 
-                        $scope.scrollTo = function(){
-                            var classes = $element.attr('class').split(' ');
-                            $.map(classes, function(value,index){
-                                if( value == 'last' ) {
-                                    isLastVar = true;
-                                }
-                            });
-                            //console.log(classes);
-                            $("body").animate({scrollTop: $element.attr('data-offset')-100}, 180);
-                            $timeout(function(){
-                                $document.trigger('scrollEnded');
-                            },200);
-                        }
+                    $document.on('menuListLoaded', calcOffset());
+
+                    $scope.scrollTo = function(){
+                        var classes = $element.attr('class').split(' ');
+                        $.map(classes, function(value,index){
+                            if( value == 'last' ) {
+                                isLastVar = true;
+                            }
+                        });
+                        //console.log(classes);
+                        $("html, body").animate({scrollTop: $element.attr('data-offset')-100}, 180);
+                        scrollEndedTimer = $timeout(function(){
+                            $document.trigger('scrollEnded');
+                        },200);
+                    }
+
+                    $scope.$on('$destroy', function( event ) {
+                        $timeout.cancel( offsetTimer );
+                        $timeout.cancel( scrollEndedTimer );
+                        $document.off('menuListLoaded', calcOffset());
                     });
 
                 }// end of link {}

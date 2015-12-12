@@ -236,6 +236,11 @@ a.logo {
 }
 
 @include to(3) {
+
+    .articlelist {
+        right: 0;
+    }
+
     .logo {
         font-size: 24px;
         margin-top: 2px;
@@ -246,10 +251,14 @@ a.logo {
     }
 
     .article-navigation {
+        max-width: 210px;
+        top: 0;
+        left: 0;
+
         .list-unstyled.fixed {
-            position: relative;
+            /*position: relative;
             left: 0 !important;
-            top: 0 !important;
+            top: 0 !important;*/
         }
         //left: 10px;
         
