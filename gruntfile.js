@@ -175,9 +175,9 @@ module.exports = function(grunt) {
                     'angular.route.min.js': 'angular-route/angular-route.min.js',
                     'angular.touch.min.js': 'angular-touch/angular-touch.min.js',
                     'angulartics.min.js': 'angulartics/dist/angulartics.min.js',
-                    'angulartics-google-analytics.min.js': 'angulartics-google-analytics/dist/angulartics-google-analytics.min.js',
+                    'angulartics-google-analytics.min.js': 'angulartics-google-analytics/dist/angulartics-google-analytics.min.js'/*,
                     'angular-scrollto.min.js': 'angular-scrollto/angular-scrollto.min.js',
-                    'angular-scroll.min.js': 'angular-scroll/angular-scroll.min.js'
+                    'angular-scroll.min.js': 'angular-scroll/angular-scroll.min.js'*/
                 },
             },
             // scrollTo
