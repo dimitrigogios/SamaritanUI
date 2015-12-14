@@ -3,9 +3,12 @@
 	padding: 0;
 
 	li {
+		cursor: pointer;
+		
 		a {
 			@extend .block;
 		}
+		
 	}
 }
 	.nav-tabs {
