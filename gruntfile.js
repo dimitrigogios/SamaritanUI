@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         //
         compass: {
             options: {
-                require: 'breakpoint-slicer',
+                require: ['breakpoint','breakpoint-slicer'],
                 sassDir: 'origin/scss',
                 cssDir: 'properties/css',
                 imagesDir: 'properties/images',
