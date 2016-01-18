@@ -1,0 +1,106 @@
+body {
+    
+}
+
+.btn-menu {
+	background-color: transparent;
+
+    &:hover,
+    &.clicked {
+        background-color: darken( #b03434, 15%);
+    }
+}
+
+$navColor : #b03434;
+.site-content {
+	> nav.navigation {
+		background-color: $navColor;
+
+		a {
+			color: $white;
+		}
+
+		.menu-list {
+			li:hover,
+			li.current {
+				a {
+					background-color: darken( $navColor, 15%);
+				}
+			}
+		}
+
+		.btn {
+			color: $white;
+
+			&:hover {
+				background-color: darken( $navColor, 15%);
+				color: $white;				
+			}
+		}
+	}
+}
+$sideNavColor: #2e95a9;
+.side-menu {
+	background-color: $sideNavColor;
+
+	.close-menu {
+        color: darken( $sideNavColor, 15%);
+    }
+
+	.menu-list {
+		@extend .text-left;
+
+		a {
+			color: $white;
+		}
+
+		li:hover,
+		li.current {
+			background-color: darken( $sideNavColor, 15%);
+		}
+	}
+}
+
+.picture {
+    background-color: $sideNavColor;
+
+    h1 {
+    	color: $white;
+    }
+}
+
+.footer {
+    background-color: #bcbcbc;
+
+    color: $white;
+
+    a {
+    	color: $white;
+    }
+}
+
+.article-navigation {
+    > ul {
+        > li.current {
+            > a {
+            	color: #752323;
+                border-color: #752323;
+            }
+
+            .sub-menu {
+            	> li.current {
+		            > a {
+		            	color: #752323;
+		                border-color: #752323;
+		            }
+		        }
+            }
+
+            &.top {
+		        > a {
+		        	color: $baseFontColor;
+		        }
+		    }
+        }
+    }
+}

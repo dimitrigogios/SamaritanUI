@@ -1,0 +1,101 @@
+.nav {
+	list-style: none;
+	padding: 0;
+
+	li {
+		a {
+			@extend .block;
+		}
+	}
+}
+	.nav-tabs {
+		border-bottom: 1px solid;
+		border-color: $lighten;
+
+		li {
+			@extend .inline-block;
+			margin-bottom: -1px !important;
+			border: 1px solid;
+			border-color: transparent;
+
+			> * {
+				padding: 10px 15px;
+				margin-right: 2px;
+				border-radius: $feather $feather 0 0;
+
+				color: $anchorColor;
+			}
+
+			&.active {
+				
+				border-color: $lighten;
+				border-bottom-color: $backgroundColor;
+
+				> * {
+					color: $anchorActiveColor;
+				}
+			}
+
+			&:hover {
+				background-color: $lighten50;
+				border-bottom-color: $lighten;
+
+				> * {
+					color: $anchorHoverColor;
+					text-decoration: none;
+				}
+			}
+
+			&.active:hover {
+				background-color: $lighten50;
+				border-bottom-color: $backgroundColor;
+
+				> * {
+					color: $anchorActiveColor;
+				}
+			}
+		}
+	}
+
+	.nav-buttons {
+		li {
+			@extend .inline-block;
+
+			> * {
+				padding: 10px 15px;
+				margin-right: 2px;
+				border-radius: $feather;
+				border: 1px solid;
+				border-color: transparent;
+				color: $anchorColor;
+			}
+
+			&.active {
+				background-color: $primaryColor;
+
+				> * {
+					color: $white;
+					border-color: $primaryColor;
+				}
+			}
+
+			&:hover {
+				background-color: $lighten50;
+				
+				> * {
+					color: $anchorHoverColor;
+					text-decoration: none;
+					border-color: $lighten50;
+				}
+			}
+
+			&.active:hover {
+				background-color: darken( $primaryColor, 5%);
+				
+				> * {
+					color: $white;
+					border-color: darken( $primaryColor, 5%);
+				}
+			}
+		}
+	}

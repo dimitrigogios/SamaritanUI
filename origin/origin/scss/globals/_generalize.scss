@@ -1,0 +1,961 @@
+// GENERALIZE
+// ------------------------------------------
+html {
+    height: 100%;
+}
+
+body {
+    background-color: transparent;
+    min-height: 100%;
+    //word-wrap: break-word;
+    width: 100%;
+    float: left;
+}
+
+* { margin: 0; padding: 0; }
+
+*, :after, :before, button, button:after, button:before, input, input:after, input:before, textarea, textarea:after, textarea:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+// Helper classes
+// ------------------------------------------
+.inline-block  {
+    display: inline-block !important;
+
+    &:before,
+    &:after {
+        display: inline-block !important;
+        content: normal !important;
+    }
+}
+.inline  {
+    display: inline !important;
+
+    &:before,
+    &:after {
+        display: inline !important;
+        content: normal !important;
+    }
+}
+.block {
+    display: block !important;
+
+    &:before,
+    &:after {
+        display: block !important;
+        content: normal !important;
+    }
+}
+.tablecell {
+    display: table-cell;
+
+    &:before,
+    &:after {
+        display: table-cell !important;
+        content: normal !important;
+    }
+}
+    
+    .stack {
+        > *,
+        > li {
+            @extend .block;
+            margin-bottom: 2px;
+        }
+    }
+
+.hide  {
+    display: none !important;
+
+    &:before,
+    &:after {
+        display: none !important;
+        content: normal !important;
+    }
+}
+        // ---
+        // Mobile Portrait, 320px
+        // ------------------------------------
+        @include to(2) {
+            body.mp {
+                .mp-hide {
+                    display: none !important;
+
+                    &:before,
+                    &:after {
+                        display: none !important;
+                        content: normal !important;
+                    }        
+                }
+            }
+        }
+
+        // ---
+        // Mobile Landscape, 480px
+        // ------------------------------------
+        @include at(3) {
+            body.ml {
+                .ml-hide {
+                    display: none !important;
+
+                    &:before,
+                    &:after {
+                        display: none !important;
+                        content: normal !important;
+                    }        
+                }
+            }
+        }
+
+        // ---
+        // From Mobile Portrait - Landscape, 0 - 480px
+        // ------------------------------------
+        @include to(3) {
+            .m-hide {
+                display: none !important;
+
+                &:before,
+                &:after {
+                    display: none !important;
+                    content: normal !important;
+                }        
+            }
+        }
+
+        // ---
+        // Tablet size, 768px
+        // ------------------------------------
+        @include at(4) {
+            .t-hide {
+                display: none !important;
+
+                &:before,
+                &:after {
+                    display: none !important;
+                    content: normal !important;
+                }        
+            }  
+        }
+
+        // ---
+        // Desktop large, 960px
+        // ------------------------------------
+        @include at(5) {
+            .dl-hide {
+                display: none !important;
+
+                &:before,
+                &:after {
+                    display: none !important;
+                    content: normal !important;
+                }        
+            }
+        }
+
+        // ---
+        // From desktop xlarge and up, 1280px - 
+        // ------------------------------------
+        @include from(6) {
+            .dxl-hide {
+                display: none !important;
+
+                &:before,
+                &:after {
+                    display: none !important;
+                    content: normal !important;
+                }        
+            }
+        }
+
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.fixed {
+    position: fixed;
+}
+.overflow {
+    overflow: hidden;
+}
+.visibilityH {
+    visibility: hidden;
+}
+.visibilityV {
+    visibility: visible;
+}
+    // ---
+    // Mobile Portrait, 320px
+    // ------------------------------------
+    @include to(2) {
+        body.mp {
+            .mp-relative {
+                position: relative;
+            }
+            .mp-absolute {
+                position: absolute;
+            }
+            .mp-fixed {
+                position: fixed;       
+            }
+                .mp-relative-i {
+                    position: relative !important;
+                }
+                .mp-absolute-i {
+                    position: absolute !important;
+                }
+                .mp-fixed-i {
+                    position: fixed !important;       
+                }
+        }
+    }
+
+    // ---
+    // Mobile Landscape, 480px
+    // ------------------------------------
+    @include at(3) {
+        body.ml {
+            .ml-relative {
+                position: relative;
+            }
+            .ml-absolute {
+                position: absolute;
+            }
+            .ml-fixed {
+                position: fixed;       
+            }
+                .ml-relative-i {
+                    position: relative !important;
+                }
+                .ml-absolute-i {
+                    position: absolute !important;
+                }
+                .ml-fixed-i {
+                    position: fixed !important;       
+                }
+        }
+    }
+
+    // ---
+    // From Mobile Portrait - Landscape, 0 - 480px
+    // ------------------------------------
+    @include to(3) {
+        .m-relative {
+            position: relative;
+        }
+        .m-absolute {
+            position: absolute;
+        }
+        .m-fixed {
+            position: fixed;       
+        }
+            .m-relative-i {
+                position: relative !important;
+            }
+            .m-absolute-i {
+                position: absolute !important;
+            }
+            .m-fixed-i {
+                position: fixed !important;       
+            }
+    }
+
+    // ---
+    // Tablet size, 768px
+    // ------------------------------------
+    @include at(4) {
+        .t-relative {
+            position: relative;
+        }
+        .t-absolute {
+            position: absolute;
+        }
+        .t-fixed {
+            position: fixed;       
+        }
+            .t-relative-i {
+                position: relative !important;
+            }
+            .t-absolute-i {
+                position: absolute !important;
+            }
+            .t-fixed-i {
+                position: fixed !important;       
+            }
+    }
+
+    // ---
+    // Desktop large, 960px
+    // ------------------------------------
+    @include at(5) {
+        .dl-relative {
+            position: relative;
+        }
+        .dl-absolute {
+            position: absolute;
+        }
+        .dl-fixed {
+            position: fixed;       
+        }
+            .dl-relative-i {
+                position: relative !important;
+            }
+            .dl-absolute-i {
+                position: absolute !important;
+            }
+            .dl-fixed-i {
+                position: fixed !important;       
+            }
+    }
+
+    // ---
+    // From desktop xlarge and up, 1280px - 
+    // ------------------------------------
+    @include from(6) {
+        .dxl-relative {
+            position: relative;
+        }
+        .dxl-absolute {
+            position: absolute;
+        }
+        .dxl-fixed {
+            position: fixed;       
+        }
+            .dxl-relative-i {
+                position: relative !important;
+            }
+            .dxl-absolute-i {
+                position: absolute !important;
+            }
+            .dxl-fixed-i {
+                position: fixed !important;       
+            }
+    }
+
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.float-none {
+    float: none;
+}
+
+.minheight1 {
+    min-height: 1px;
+}
+.minheigt100 {
+    min-height: 100%;
+}
+.minheigt50 {
+    min-height: 50%;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-left {
+    text-align: left;
+}
+.text-justify {
+    text-align: justify;
+}
+        // ---
+        // Mobile Portrait, 320px, mp
+        // ------------------------------------
+        @include to(2) {
+            body.mp {
+                .mp-text-center {
+                    text-align: center;
+                }
+                .mp-text-right {
+                    text-align: right;
+                }
+                .mp-text-left {
+                    text-align: left;
+                }
+                .mp-text-justify {
+                    text-align: justify;
+                }
+            }
+        }
+
+        // ---
+        // Mobile Landscape, 480px, ml
+        // ------------------------------------
+        @include at(3) {
+            body.ml {
+                .ml-text-center {
+                    text-align: center;
+                }
+                .ml-text-right {
+                    text-align: right;
+                }
+                .ml-text-left {
+                    text-align: left;
+                }
+                .ml-text-justify {
+                    text-align: justify;
+                }
+            }
+        }
+
+        // ---
+        // From Mobile Portrait - Landscape, 0 - 480px, m
+        // ------------------------------------
+        @include to(3) {
+            .m-text-center {
+                text-align: center;
+            }
+            .m-text-right {
+                text-align: right;
+            }
+            .m-text-left {
+                text-align: left;
+            }
+            .m-text-justify {
+                text-align: justify;
+            }
+        }
+
+        // ---
+        // Tablet size, 768px, t
+        // ------------------------------------
+        @include at(4) { 
+            .t-text-center {
+                text-align: center;
+            }
+            .t-text-right {
+                text-align: right;
+            }
+            .t-text-left {
+                text-align: left;
+            }
+            .t-text-justify {
+                text-align: justify;
+            }
+        }
+
+        // ---
+        // From large and and up, 960px - , dl
+        // ------------------------------------
+        @include from(5) {  
+        }
+
+        // ---
+        // From xlarge desktop and up, 1280px - , dxl
+        // ------------------------------------
+        @include from(6) {
+
+        }
+
+.clear {
+    clear: both;
+}
+.clear-left {
+    clear: left;
+}
+.clear-right {
+    clear: right;
+}
+
+// Font weight
+.light {
+    font-weight: 300;
+}
+.normal {
+    font-weight: 400;
+}
+.semi-bold {
+    font-weight: 600;
+}
+.bold {
+    font-weight: 700;
+}
+.ultra-bold {
+    font-weight: 900;
+}
+
+// Text transform
+.uppercase {
+    text-transform: uppercase;
+}
+.lowercase {
+    text-transform: lowercase;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+
+// vertical align
+.v-align {
+    @extend %vertical-align;
+}
+// horizontal align
+.h-align {
+    @extend %horizontal-align;
+}
+
+// line-heihgt
+// ------------------------------------------
+@for $lineHeight from 1 through $loopNumber {
+    .l#{$lineHeight} {
+        line-height: $lineHeight + 0px;
+    }
+}
+
+// z-indexex
+// ------------------------------------------
+@for $z from 1 through $loopNumber {
+    .z#{$z} {
+        z-index: $z;
+    }
+}
+
+.center {
+    @extend %center-align;
+}
+
+// opacity
+// ------------------------------------------
+@for $opa from 1 through 10 {
+    .opa0#{$opa} {
+        opacity: $opa/10 +  !important;
+    }
+}
+
+// coordinates
+// ------------------------------------------
+@for $top from 0 through $loopNumber {
+    .top#{$top} {
+        top: 0% + $top;
+    }
+}
+@for $right from 0 through $loopNumber {
+    .right#{$right} {
+        right: 0% + $right;
+    }
+}
+@for $bottom from 0 through $loopNumber {
+    .bottom#{$bottom} {
+        bottom: 0% + $bottom;
+    }
+}
+@for $left from 0 through $loopNumber {
+    .left#{$left} {
+        left: 0% + $left;
+    }
+}
+
+// cursor helpers
+// ------------------------------------------
+.pointer {
+    cursor: pointer;
+}
+.cursor {
+    cursor: default;
+}
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.blank-space {
+    @extend .w100;
+    @extend .float-left;
+    border:0;
+    border-bottom: 1px solid;
+    margin-top: 1rem;
+    margin-bottom: 1rem;    
+
+    // ---
+    // Mobile Landscape, 480px
+    // ------------------------------------
+    @include at(3) {
+    }
+
+    // ---
+    // Tablet size, 768px
+    // ------------------------------------
+    @include at(4) { 
+        margin-top: 1.4rem;
+        margin-bottom: 1.4rem;
+    }
+
+    // ---
+    // Desktop large, 960px
+    // ------------------------------------
+    @include at(5) {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    // ---
+    // From desktop xlarge and up, 1280px - 
+    // ------------------------------------
+    @include from(6) {
+        margin-top: 2.4rem;
+        margin-bottom: 2.4rem;   
+    }
+}
+    .s-blank-space {
+        @extend .blank-space;
+
+        // ---
+        // Mobile Landscape, 480px
+        // ------------------------------------
+        @include at(3) {
+        }
+
+        // ---
+        // Tablet size, 768px
+        // ------------------------------------
+        @include at(4) { 
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        // ---
+        // Desktop large, 960px
+        // ------------------------------------
+        @include at(5) {
+            margin-top: 1.3rem;
+            margin-bottom: 1.3rem;
+        }
+
+        // ---
+        // From desktop xlarge and up, 1280px - 
+        // ------------------------------------
+        @include from(6) {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;   
+        }
+    }
+
+// trailing
+// ------------------------------------------
+.trailing {
+    margin-bottom: 10px;
+}
+@for $trailing from 0 through 9 {
+    .trailing0#{$trailing} {
+        margin-bottom: 0rem + $trailing/10;
+    }
+}
+    @for $trailing from 0 through 9 {
+        .trailing0#{$trailing}-i {
+            margin-bottom: 0rem + $trailing/10 !important;
+        }
+    }
+
+@for $trailing from 0 through $loopNumber {
+    .trailing#{$trailing} {
+        margin-bottom: 0rem + $trailing;
+    }
+}
+    @for $trailing from 0 through $loopNumber {
+        .trailing#{$trailing}-i {
+            margin-bottom: 0rem + $trailing !important;
+        }
+    }
+
+        // ---
+        // Mobile Portrait, 320px
+        // ------------------------------------
+        @include to(2) {
+            body.mp {
+                @for $trailing from 0 through $loopNumber {
+                    .mp-trailing#{$trailing} {
+                        margin-bottom: 0rem + $trailing;
+                    }
+                }
+            }
+        }
+
+        // ---
+        // Mobile Landscape, 480px
+        // ------------------------------------
+        @include at(3) {
+            body.ml {
+                @for $trailing from 0 through $loopNumber {
+                    .ml-trailing#{$trailing} {
+                        margin-bottom: 0rem + $trailing;
+                    }
+                }
+            }
+        }
+
+        // ---
+        // From Mobile Portrait - Landscape, 0 - 480px
+        // ------------------------------------
+        @include to(3) {
+            @for $trailing from 0 through $loopNumber {
+                .m-trailing#{$trailing} {
+                    margin-bottom: 0rem + $trailing;
+                }
+            }
+        }
+
+        // ---
+        // Tablet size, 768px
+        // ------------------------------------
+        @include at(4) {
+            @for $trailing from 0 through $loopNumber {
+                .t-trailing#{$trailing}  {
+                    margin-bottom: 0rem + $trailing;
+                }
+            }   
+        }
+
+        // ---
+        // From large and and up, 960px - 
+        // ------------------------------------
+        @include from(5) {
+            @for $trailing from 0 through $loopNumber {
+                .dl-trailing#{$trailing}  {
+                    margin-bottom: 0rem + $trailing;
+                }
+            }    
+        }
+
+        // ---
+        // From xlarge desktop and up, 1280px - 
+        // ------------------------------------
+        @include from(6) {
+            @for $trailing from 0 through $loopNumber {
+                .dxl-trailing#{$trailing}  {
+                    margin-bottom: 0rem + $trailing;
+                }
+            }   
+        }
+
+.no-border {
+    border: 0;
+}
+.no-margin {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.to-top {
+    @extend .pointer;
+}
+    .to-top {
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: none;
+    }
+
+.g-recaptcha {
+    > div {
+        > div {
+            width: 100% !important;
+        }
+    }
+}
+
+@for $buff from 0 through $loopNumber {
+    .buff#{$buff}  {
+        padding: 0px + $buff;
+    }
+}
+
+.buff-top {
+    padding-top: $sidePadding + $sidePadding;
+}
+.buff-right {
+    padding-right: $sidePadding + $sidePadding;
+}
+.buff-bottom {
+    padding-bottom: $sidePadding + $sidePadding;
+}
+.buff-left {
+    padding-left: $sidePadding + $sidePadding;
+}
+.s-buff-top {
+    padding-top: $sidePadding;
+}
+.s-buff-right {
+    padding-right: $sidePadding;
+}
+.s-buff-bottom {
+    padding-bottom: $sidePadding;
+}
+.s-buff-left {
+    padding-left: $sidePadding;
+}
+        // ---
+        // Mobile Portrait, 320px, mp
+        // ------------------------------------
+        @include to(2) {
+            body.mp {
+                .mp-buff-top {
+                    padding-top: $sidePadding + $sidePadding;
+                }
+                .mp-buff-right {
+                    padding-right: $sidePadding + $sidePadding;
+                }
+                .mp-buff-bottom {
+                    padding-bottom: $sidePadding + $sidePadding;
+                }
+                .mp-buff-left {
+                    padding-left: $sidePadding + $sidePadding;
+                }
+            }
+        }
+
+        // ---
+        // Mobile Landscape, 480px, ml
+        // ------------------------------------
+        @include at(3) {
+            body.ml {
+                .ml-buff-top {
+                    padding-top: $sidePadding + $sidePadding;
+                }
+                .ml-buff-right {
+                    padding-right: $sidePadding + $sidePadding;
+                }
+                .ml-buff-bottom {
+                    padding-bottom: $sidePadding + $sidePadding;
+                }
+                .ml-buff-left {
+                    padding-left: $sidePadding + $sidePadding;
+                }
+            }
+        }
+
+        // ---
+        // From Mobile Portrait - Landscape, 0 - 480px, m
+        // ------------------------------------
+        @include to(3) {
+            .m-buff-top {
+                padding-top: $sidePadding + $sidePadding;
+            }
+            .m-buff-right {
+                padding-right: $sidePadding + $sidePadding;
+            }
+            .m-buff-bottom {
+                padding-bottom: $sidePadding + $sidePadding;
+            }
+            .m-buff-left {
+                padding-left: $sidePadding + $sidePadding;
+            }
+                .sm-buff-top {
+                    padding-top: $sidePadding;
+                }
+                .sm-buff-right {
+                    padding-right: $sidePadding;
+                }
+                .sm-buff-bottom {
+                    padding-bottom: $sidePadding;
+                }
+                .sm-buff-left {
+                    padding-left: $sidePadding;
+                }
+        }
+
+        // ---
+        // Tablet size, 768px, t
+        // ------------------------------------
+        @include at(4) { 
+            .t-buff-top {
+                padding-top: $sidePadding + $sidePadding;
+            }
+            .t-buff-right {
+                padding-right: $sidePadding + $sidePadding;
+            }
+            .t-buff-bottom {
+                padding-bottom: $sidePadding + $sidePadding;
+            }
+            .t-buff-left {
+                padding-left: $sidePadding + $sidePadding;
+            }
+                .st-buff-top {
+                    padding-top: $sidePadding;
+                }
+                .st-buff-right {
+                    padding-right: $sidePadding;
+                }
+                .st-buff-bottom {
+                    padding-bottom: $sidePadding;
+                }
+                .st-buff-left {
+                    padding-left: $sidePadding;
+                }
+        }
+
+        // ---
+        // From large and and up, 960px - , dl
+        // ------------------------------------
+        @include from(5) {  
+        }
+
+        // ---
+        // From xlarge desktop and up, 1280px - , dxl
+        // ------------------------------------
+        @include from(6) {
+
+        }
+
+// Misc Fixes
+// ------------------------------------------
+*[data-start-hidden="true"],
+.collapsed {
+    @extend .visibilityH;
+}
+
+
+
+.no-shadow {
+    -webkit-box-sizing: none;
+       -moz-box-sizing: none;
+            box-sizing: none;
+}
+.no-resize{
+    resize: none;
+}
+div:empty {
+   display: none;
+}
+
+.responsive {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+img {
+    vertical-align: middle;
+    @extend .responsive;
+}
+
+.disabled,
+*[disabled="disabled"] {
+    @extend .opa07;
+    @extend .not-allowed;
+}
+*[readonly] {
+    @extend .opa07;
+}
+.help-block {
+    @extend .block;
+    padding: 5px 0;
+}
+
+.animation {
+    -webkit-transition: all 120ms ease-out;
+       -moz-transition: all 120ms ease-out;
+        -ms-transition: all 120ms ease-out;
+         -o-transition: all 120ms ease-out;
+            transition: all 120ms ease-out;
+}

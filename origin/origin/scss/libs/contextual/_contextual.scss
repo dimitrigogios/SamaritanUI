@@ -1,0 +1,117 @@
+.form-inline .warning,
+.form-group.warning,
+.warning {
+	color: $warningColor;
+
+	.form-input,
+	.text-area,
+	.input-group .addon,
+	.input-group .addon:first-child {
+		border-color: $warningColor !important;
+
+		-webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $warningColor, 5%),1);
+           -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $warningColor, 5%),1);
+                box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $warningColor, 5%),1);
+	}
+	.input-group .addon,
+	.input-group .addon:first-child {
+		background-color: $warningColor;
+	}
+
+	.input-group {
+		color: $white;
+	}
+}
+
+.form-inline .danger,
+.form-group.danger,
+.danger {
+	color: $dangerColor;
+
+	.form-input,
+	.text-area,
+	.input-group .addon,
+	.input-group .addon:first-child {
+		border-color: $dangerColor !important;
+
+		-webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $dangerColor, 5%),1);
+           -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $dangerColor, 5%),1);
+                box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $dangerColor, 5%),1);
+	}
+	.input-group .addon,
+	.input-group .addon:first-child {
+		background-color: $dangerColor;
+	}
+
+	.input-group {
+		color: $white;
+	}
+}
+
+.form-inline .success,
+.form-group.success,
+.success {
+	color: $successColor;
+
+	.form-input,
+	.text-area,
+	.input-group .addon,
+	.input-group .addon:first-child {
+		border-color: $successColor !important;
+
+		-webkit-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $successColor, 5%),1);
+           -moz-box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $successColor, 5%),1);
+                box-shadow: 0px $bottomShadow 0px 0px rgba(lighten( $successColor, 5%),1);
+	}
+	.input-group .addon,
+	.input-group .addon:first-child {
+		background-color: $successColor;
+	}
+
+	.input-group {
+		color: $white;
+	}
+}
+
+// Contextual text, background
+// ------------------------------------------
+.text-primary {
+	color: $primaryColor;
+}
+.text-success {
+	color: $successColor;
+}
+.text-info {
+	color: $infoColor;
+}
+.text-warning {
+	color: $warningColor;
+}
+.text-danger {
+	color: $dangerColor;
+}
+	.bg-primary {
+		background-color: $primaryColor;
+		color: $white;
+		padding: 0.5em;
+	}
+	.bg-success {
+		background-color: $successColor;
+		color: $white;
+		padding: 0.5em;
+	}
+	.bg-info {
+		background-color: $infoColor;
+		color: $white;
+		padding: 0.5em;
+	}
+	.bg-warning {
+		background-color: $warningColor;
+		color: $white;
+		padding: 0.5em;
+	}
+	.bg-danger {
+		background-color: $dangerColor;
+		color: $white;
+		padding: 0.5em;
+	}
